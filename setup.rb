@@ -76,3 +76,10 @@ git_grab(
   "vim-sensible",
   "d0beb8ab42627bea2c747564ca46ec663e3ba0ba"
 )
+
+# vim fugitive
+git_grab(
+  "https://github.com/tpope/vim-fugitive/",
+  "vim-fugitive",
+  "03cc95cc198ea94a6a003a92cd0e58af4416ec25"
+)
