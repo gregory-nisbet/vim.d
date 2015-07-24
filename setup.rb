@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 $home = ENV["HOME"]
+`mkdir -p #{$home}/.vim/`
 def get_pathogen()
   Dir.mkdir("#{$home}/.vim/autoload")
   Dir.mkdir("#{$home}/.vim/bundle")
