@@ -83,3 +83,9 @@ git_grab(
   "vim-fugitive",
   "03cc95cc198ea94a6a003a92cd0e58af4416ec25"
 )
+
+git_grab(
+  "https://github.com/gregory-nisbet/vim-colorstepper",
+  "vim-colorstepper",
+  "e87629b6e77de99edb3b286264e856883abe2317"
+)
