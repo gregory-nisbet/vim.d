@@ -18,6 +18,14 @@ let g:mapleader=","
 
 "convenient save
 nmap <leader>w :w!<cr>
+"leader key section
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader><cr> :noh<cr><esc>
+map <space> /
+map <C-space> ?
 
 "show more of file as you move cursor
 set so=7
@@ -74,6 +82,8 @@ set shiftwidth=4
 filetype plugin indent on
 
 
+" nerdtree show hidden files
+let g:NERDTreeShowHidden=1
 
 " df key chord for insert mode,
 call arpeggio#map('i', '', 0, 'df', '<Esc>')
