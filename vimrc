@@ -17,7 +17,7 @@ let mapleader=","
 let g:mapleader=","
 
 "convenient save
-nmap <leader>w :w!
+nmap <leader>w :w!<cr>
 
 "show more of file as you move cursor
 set so=7
