@@ -3,11 +3,7 @@ execute pathogen#infect()
 " run sensible stuff first
 " keep the number column blue, tpope's stuff first.
 runtime! plugin/sensible.vim
-
-
-
 " extended with useful tips from http://amix.dk/vim/vimrc.html
-
 " make vim remember more history or something
 set history=700
 " reload file when it's changed underneath you
@@ -15,56 +11,50 @@ set autoread
 " set comma to leader key
 let mapleader=","
 let g:mapleader=","
-
 "convenient save
 nmap <leader>w :w!<cr>
-
+" leader key section
+" some leader keys are invisibly set in nerdcommenter
+" but they all begin with <leader>c .
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader><cr> :noh<cr><esc>
+map <space> /
+map <C-space> ?
 "show more of file as you move cursor
 set so=7
 " show position on line
 set ruler
-
 " height of command bar
 set cmdheight=2
-
 " hide buffer when abandoned
 set hid
-
 " backspace change from ultimate vim config
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
-
 "ignore case while searching
 set ignorecase
-
 " be smart about case stuff
 set smartcase
-
 " highlight search results
 set hlsearch
-
 " incremental search!
 set incsearch
-
 " no redraw while executing macros
 set lazyredraw
-
 " lots of regex magic
 set magic
-
 " highlight matching brackets
 set showmatch
 " tenths of second to blink while showing matching bracket
 set mat=2
-
 " misc config stuff for bells
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-
-
 " custom stuff sorta
 set tabstop=4
 set smarttab
@@ -72,11 +62,12 @@ set expandtab
 set shiftwidth=4
 " recommendation for python et al
 filetype plugin indent on
-
-
-
+" nerdtree show hidden files
+let g:NERDTreeShowHidden=1
 " df key chord for insert mode,
 call arpeggio#map('i', '', 0, 'df', '<Esc>')
+" jj key chord for return
+call arpeggio#map('i', '', 0, 'jk', '<cr>')
 " <c-k> for insert mode
 inoremap <c-k> <Esc>
 " for some reason modelines are not enabled by default in my current setup
@@ -97,12 +88,10 @@ set number
 set nofoldenable
 " elflord is an excellent default color scheme
 colorscheme elflord
-
 "interim colorstepper keys
 nmap <F6> <Plug>ColorstepPrev
 nmap <F7> <Plug>ColorstepNext
 nmap <S-F7> <Plug>ColorstepReload
-
 " in order to keep cool stuff like the column number blue, you gotta
 " define an exit hook for vim-colorstepper (which I patched)
 function! g:StepColorExitHook()
@@ -111,6 +100,13 @@ function! g:StepColorExitHook()
         " line number column is dark blue with white text.
         highlight LineNr ctermbg=darkblue ctermfg=white
 endfunction
-
+" define a way of modifying the colorscheme so as to apply the 
+" blue column
+function! g:ColumnBlue()
+        " white text on a black background
+        highlight Normal ctermbg=black ctermfg=white
+        " line number column is dark blue with white text.
+        highlight LineNr ctermbg=darkblue ctermfg=white
+endfunction
 " actually enable the cool color scheme by default
 call g:StepColorExitHook()
