@@ -11,18 +11,10 @@ set autoread
 " set comma to leader key
 let mapleader=","
 let g:mapleader=","
-"convenient save
-nmap <leader>w :w!<cr>
-" leader key section
-" some leader keys are invisibly set in nerdcommenter
-" but they all begin with <leader>c .
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader><cr> :noh<cr><esc>
-map <space> /
-map <C-space> ?
+"set backup directory to .backup, current folder, or tmp
+"depending on what is writeable
+set backupdir=./.backup,.,/tmp
+set directory=.,./.backup,/tmp
 "show more of file as you move cursor
 set so=7
 " show position on line
@@ -69,7 +61,7 @@ call arpeggio#map('i', '', 0, 'df', '<Esc>')
 " jj key chord for return
 call arpeggio#map('i', '', 0, 'jk', '<cr>')
 " <c-k> for insert mode
-inoremap <c-k> <Esc>
+" inoremap <c-k> <Esc>
 " for some reason modelines are not enabled by default in my current setup
 set modelines=10
 "backspace bug fix
@@ -110,3 +102,18 @@ function! g:ColumnBlue()
 endfunction
 " actually enable the cool color scheme by default
 call g:StepColorExitHook()
+" keymaps
+" leader key section
+" some leader keys are invisibly set in nerdcommenter
+" but they all begin with <leader>c .
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>o :BufExplorer<cr>
+map <leader>qa :qa!<cr>
+map <silent> <leader><cr> :noh<cr><esc>
+map <space> /
+map <C-space> ?
+"convenient save
+nmap <leader>w :w!<cr>

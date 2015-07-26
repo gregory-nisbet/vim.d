@@ -85,8 +85,23 @@ git_grab(
   "03cc95cc198ea94a6a003a92cd0e58af4416ec25"
 )
 
+# vim-colorstepper (patched with exit hook)
 git_grab(
   "https://github.com/gregory-nisbet/vim-colorstepper",
   "vim-colorstepper",
   "e87629b6e77de99edb3b286264e856883abe2317"
+)
+
+# bufexplorer
+git_grab(
+    "https://github.com/jlanzarotta/bufexplorer",
+    "bufexplorer",
+    "ef7e4172944dd2d2911ccef501a0119b63c80449"
+)
+
+# mru.vim
+git_grab(
+    "https://github.com/vim-scripts/mru.vim",
+    "mru.vim",
+    "9f25db66393a6467fae0ac04ae6565e8471023c3"
 )
