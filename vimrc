@@ -88,7 +88,7 @@ nmap <S-F7> <Plug>ColorstepReload
 " define an exit hook for vim-colorstepper (which I patched)
 function! g:StepColorExitHook()
         " white text on a black background
-        highlight Normal ctermbg=black ctermfg=white
+        " highlight Normal ctermbg=black ctermfg=white
         " line number column is dark blue with white text.
         highlight LineNr ctermbg=darkblue ctermfg=white
 endfunction
