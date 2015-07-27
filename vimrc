@@ -139,6 +139,7 @@ map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>o :BufExplorer<cr>
 map <leader>qa :qa!<cr>
+map <leader>n :NERDTree<cr>
 map <silent> <leader><cr> :noh<cr><esc>
 map <space> /
 map <C-space> ?
@@ -149,6 +150,8 @@ map <C-space> ?
 " doesn't work in / searches whatever.
 noremap <c-l> <esc>
 noremap! <c-l> <esc>
+" escape from command-line like things
+cnoremap <c-l> <c-c>
 " cnoremap <c-space> <esc>
 " convenient save
 nmap <leader>w :w!<cr>
