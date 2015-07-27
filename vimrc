@@ -140,11 +140,15 @@ map <leader>tl :tablast<cr>
 map <leader>o :BufExplorer<cr>
 map <leader>qa :qa!<cr>
 map <silent> <leader><cr> :noh<cr><esc>
-noremap <space> /
-noremap <C-k> ?
-noremap <C-space> <esc>
+map <space> /
+map <C-space> ?
+" noremap <C-space> <esc>
 " inoremap <C-space> <esc> 
 " vnoremap <C-space> <esc> 
-" nnoremap <C-space> <esc> 
-"convenient save
+" nnoremap <C-space> <esc>
+" doesn't work in / searches whatever.
+noremap <c-l> <esc>
+noremap! <c-l> <esc>
+" cnoremap <c-space> <esc>
+" convenient save
 nmap <leader>w :w!<cr>
