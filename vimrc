@@ -1,8 +1,33 @@
+" Glorious Mostly Stolen Vim Config
+" This vim config is cobbled together from a bunch of different sources
+" The following behavior is weird.
+" space now searches forward, ctrl-space used to search backwards
+" now ctrl-k searches backwards (because you don't use it for anything in
+" normal mode)
+" ctrl-space is escape now because it is easy ergonomically and I don't have
+" to deal with remapping capslock (or a Truly Ergonomic Keyboard caps lock is
+" just as inconvenient as escape anyway)
+" I could go through and patch ctrl-p so as to honor ctrl-space as the exiting
+" command, but then I would have to fork it and bother to keep it synced with
+" the upstream, also ctrl-c quits it anyway so that's kind of nice (almost
+" like a command line tool!)
+" The setup script is written in (appallingly poor) ruby because that is
+" enabled by default in the version of vim that OS X ships with for some
+" reason.
+" That is not the desired end state. Eventually I will write a package
+" gatherer thing (like pip? sort of?) in perl that can take a number of urls
+" and a deep sha256 of the resulting package (without version control
+" information) and validate it and that thing
+" will completely replace the stupid ruby setup script. for the moment though
+" it works so it can stay.
+
 " pathogen runtime manager
 execute pathogen#infect()
 " run sensible stuff first
 " keep the number column blue, tpope's stuff first.
 runtime! plugin/sensible.vim
+" try to get ctrl-p to honor <C-space> as escape
+" runtime! plugin/ctrlp.vim 
 " extended with useful tips from http://amix.dk/vim/vimrc.html
 " make vim remember more history or something
 set history=700
@@ -106,10 +131,6 @@ call g:StepColorExitHook()
 " leader key section
 " some leader keys are invisibly set in nerdcommenter
 " but they all begin with <leader>c .
-" inoremap <c-j> <esc>
-" nnoremap <c-j> <esc>
-" vnoremap <c-j> <esc>
-map <c-j> <esc>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
@@ -119,7 +140,11 @@ map <leader>tl :tablast<cr>
 map <leader>o :BufExplorer<cr>
 map <leader>qa :qa!<cr>
 map <silent> <leader><cr> :noh<cr><esc>
-map <space> /
-map <C-space> ?
+noremap <space> /
+noremap <C-k> ?
+noremap <C-space> <esc>
+" inoremap <C-space> <esc> 
+" vnoremap <C-space> <esc> 
+" nnoremap <C-space> <esc> 
 "convenient save
 nmap <leader>w :w!<cr>
