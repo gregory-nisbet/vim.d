@@ -106,13 +106,16 @@ call g:StepColorExitHook()
 " leader key section
 " some leader keys are invisibly set in nerdcommenter
 " but they all begin with <leader>c .
-inoremap <c-j> <esc>
-nnoremap <c-j> <esc>
-vnoremap <c-j> <esc>
+" inoremap <c-j> <esc>
+" nnoremap <c-j> <esc>
+" vnoremap <c-j> <esc>
+map <c-j> <esc>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
+map <leader>tf :tabfirst<cr>
+map <leader>tl :tablast<cr>
 map <leader>o :BufExplorer<cr>
 map <leader>qa :qa!<cr>
 map <silent> <leader><cr> :noh<cr><esc>
