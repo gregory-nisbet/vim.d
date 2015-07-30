@@ -112,3 +112,9 @@ git_grab(
     "YankRing.vim",
     "28854abef8fa4ebd3cb219aefcf22566997d8f65"
 )
+
+git_grab(
+    "https://github.com/junegunn/fzf",
+    "fzf",
+    "0b4542fcdf52b51e026db230a0ec6c06e5eff00d"
+)
