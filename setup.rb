@@ -105,3 +105,10 @@ git_grab(
     "mru.vim",
     "9f25db66393a6467fae0ac04ae6565e8471023c3"
 )
+
+# vim version of emacs kill ring
+git_grab(
+    "https://github.com/vim-scripts/YankRing.vim",
+    "YankRing.vim"
+    "28854abef8fa4ebd3cb219aefcf22566997d8f65"
+)

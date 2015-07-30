@@ -151,6 +151,7 @@ map <C-space> ?
 noremap <c-l> <esc>
 noremap! <c-l> <esc>
 " escape from command-line like things
+" seems not to work in macvim. oh well.
 cnoremap <c-l> <c-c>
 " cnoremap <c-space> <esc>
 " convenient save
