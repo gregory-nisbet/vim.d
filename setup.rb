@@ -115,7 +115,7 @@ git_grab(
 
 # fuzzy finder 
 git_grab(
-    "https://github.com/junegunn/fzf",
+    "https://github.com/gregory-nisbet/fzf",
     "fzf",
-    "0b4542fcdf52b51e026db230a0ec6c06e5eff00d"
+    "87d0d3e3b6e0f49f2467472a0a0ecd547e187358"
 )
