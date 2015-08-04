@@ -140,6 +140,8 @@ map <leader>tl :tablast<cr>
 map <leader>o :BufExplorer<cr>
 map <leader>qa :qa!<cr>
 map <leader>n :NERDTree<cr>
+"fzf opens with no files for some reason
+"map <leader>f :FZF<cr>
 map <silent> <leader><cr> :noh<cr><esc>
 map <space> /
 map <C-space> ?
@@ -152,6 +154,7 @@ noremap <c-l> <esc>
 noremap! <c-l> <esc>
 " escape from command-line like things
 " seems not to work in macvim. oh well.
+" or for fzf (work on this)
 cnoremap <c-l> <c-c>
 " cnoremap <c-space> <esc>
 " convenient save
