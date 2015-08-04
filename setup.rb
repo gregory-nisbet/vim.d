@@ -16,7 +16,7 @@ $bundle_path = $home + "/.vim/bundle"
 
 def git_grab(url, name, hash_prefix)
   if File.exist?($bundle_path + "/#{name}")
-  	return
+    return
   else
     system <<-END_GIT_CLONE
       cd #{$bundle_path} && \\
@@ -94,27 +94,28 @@ git_grab(
 
 # bufexplorer
 git_grab(
-    "https://github.com/jlanzarotta/bufexplorer",
-    "bufexplorer",
-    "ef7e4172944dd2d2911ccef501a0119b63c80449"
+  "https://github.com/jlanzarotta/bufexplorer",
+  "bufexplorer",
+  "ef7e4172944dd2d2911ccef501a0119b63c80449"
 )
 
 # mru.vim
 git_grab(
-    "https://github.com/vim-scripts/mru.vim",
-    "mru.vim",
-    "9f25db66393a6467fae0ac04ae6565e8471023c3"
+  "https://github.com/vim-scripts/mru.vim",
+  "mru.vim",
+  "9f25db66393a6467fae0ac04ae6565e8471023c3"
 )
 
 # vim version of emacs kill ring
 git_grab(
-    "https://github.com/vim-scripts/YankRing.vim",
-    "YankRing.vim",
-    "28854abef8fa4ebd3cb219aefcf22566997d8f65"
+  "https://github.com/vim-scripts/YankRing.vim",
+  "YankRing.vim",
+  "28854abef8fa4ebd3cb219aefcf22566997d8f65"
 )
 
+# fzf is good for you
 git_grab(
-    "https://github.com/junegunn/fzf",
-    "fzf",
-    "0b4542fcdf52b51e026db230a0ec6c06e5eff00d"
+  "https://github.com/gregory-nisbet/fzf/",
+  "fzf",
+  "87d0d3e3b6e0f49f2467472a0a0ecd547e187358"
 )
