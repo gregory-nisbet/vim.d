@@ -82,9 +82,9 @@ filetype plugin indent on
 " nerdtree show hidden files
 let g:NERDTreeShowHidden=1
 " df key chord for insert mode,
-call arpeggio#map('i', '', 0, 'df', '<Esc>')
+" call arpeggio#map('i', '', 0, 'df', '<Esc>')
 " jj key chord for return
-call arpeggio#map('i', '', 0, 'jk', '<cr>')
+" call arpeggio#map('i', '', 0, 'jk', '<cr>')
 " <c-k> for insert mode
 " inoremap <c-k> <Esc>
 " for some reason modelines are not enabled by default in my current setup
@@ -131,20 +131,25 @@ call g:StepColorExitHook()
 " leader key section
 " some leader keys are invisibly set in nerdcommenter
 " but they all begin with <leader>c .
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>o :BufExplorer<cr>
-map <leader>qa :qa!<cr>
-map <leader>n :NERDTree<cr>
+noremap <leader>tn :tabnew<cr>
+noremap <leader>to :tabonly<cr>
+noremap <leader>tc :tabclose<cr>
+noremap <leader>tm :tabmove
+noremap <leader>tf :tabfirst<cr>
+noremap <leader>tl :tablast<cr>
+noremap <leader>o :BufExplorer<cr>
+noremap <leader>qa :qa!<cr>
+noremap <leader>n :NERDTree<cr>
+" collapse vertically split window
+" todo uncollapse
+noremap <leader>c :resize 0<cr>
+" Shell command to scratch buffer
+noremap <leader>s :Shell
 "fzf opens with no files for some reason
 "map <leader>f :FZF<cr>
-map <silent> <leader><cr> :noh<cr><esc>
-map <space> /
-map <C-space> ?
+noremap <silent> <leader><cr> :noh<cr><esc>
+noremap <space> /
+noremap <C-space> ?
 " noremap <C-space> <esc>
 " inoremap <C-space> <esc> 
 " vnoremap <C-space> <esc> 
@@ -158,4 +163,26 @@ noremap! <c-l> <esc>
 cnoremap <c-l> <c-c>
 " cnoremap <c-space> <esc>
 " convenient save
-nmap <leader>w :w!<cr>
+nnoremap <leader>w :w!<cr>
+" semicolon and color are hard to insert with remaps
+" inoremap <M-j> ;
+" inoremap <M-k> :
+
+" function shell command to new buffer
+ca shell Shell
+" stolen from http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
+" uses the command alias Shell and modifies it for some reason.
+function! s:ExecuteInShell(command)
+  let command = join(map(split(a:command), 'expand(v:val)'))
+  let winnr = bufwinnr('^' . command . '$')
+  silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+  setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+  echo 'Execute ' . command . '...'
+  silent! execute 'silent %!'. command
+  silent! execute 'resize ' . line('$')
+  silent! redraw
+  silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+  silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+  echo 'Shell command ' . command . ' executed.'
+endfunction
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
