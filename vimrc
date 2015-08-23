@@ -15,10 +15,10 @@
 " enabled by default in the version of vim that OS X ships with for some
 " reason.
 " That is not the desired end state. Eventually I will write a package
-" gatherer thing (like pip? sort of?) in perl that can take a number of urls
+
 " and a deep sha256 of the resulting package (without version control
 " information) and validate it and that thing
-" will completely replace the stupid ruby setup script. for the moment though
+
 " it works so it can stay.
 
 " pathogen runtime manager
@@ -69,7 +69,8 @@ set showmatch
 set mat=2
 " misc config stuff for bells
 set noerrorbells
-set novisualbell
+" might be novisualbell
+set visualbell
 set t_vb=
 set tm=500
 " custom stuff sorta
@@ -139,12 +140,17 @@ noremap <leader>tf :tabfirst<cr>
 noremap <leader>tl :tablast<cr>
 noremap <leader>o :BufExplorer<cr>
 noremap <leader>qa :qa!<cr>
+noremap <leader>wq :wq<cr>
 noremap <leader>n :NERDTree<cr>
 " collapse vertically split window
 " todo uncollapse
-noremap <leader>c :resize 0<cr>
+noremap <leader>d :resize 0<cr>
+" close enough to uncollapse right?
+" also C-w _ uncollapses 
+noremap <leader>D <c-w>_<cr>
 " Shell command to scratch buffer
-noremap <leader>s :Shell
+" note this line intentionally ends in a space
+noremap <leader>s :Shell<space>
 "fzf opens with no files for some reason
 "map <leader>f :FZF<cr>
 noremap <silent> <leader><cr> :noh<cr><esc>
@@ -186,3 +192,7 @@ function! s:ExecuteInShell(command)
   echo 'Shell command ' . command . ' executed.'
 endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+
+" shell command to new tab
+" function! s:ExecuteInShellOtherWindow(command)
+"    let command = 
