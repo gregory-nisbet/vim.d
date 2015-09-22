@@ -21,6 +21,13 @@
 
 " it works so it can stay.
 
+" for greater consistency with evil mode, removing <space> and <c-space>
+" mapping.
+" also for some freaking reason c-space does not work at all in iterm or
+" terminal. possible good question in there?
+"
+" also I need to add an org-modey thing to this vim config to improve it
+
 " pathogen runtime manager
 execute pathogen#infect()
 " run sensible stuff first
@@ -154,8 +161,12 @@ noremap <leader>s :Shell<space>
 "fzf opens with no files for some reason
 "map <leader>f :FZF<cr>
 noremap <silent> <leader><cr> :noh<cr><esc>
-noremap <space> /
-noremap <C-space> ?
+
+" remapping space is convenient and ^space doesn't work at all.
+" noremap <space> /
+" noremap <C-Space> ?
+noremap gc /
+noremap gv ? 
 " noremap <C-space> <esc>
 " inoremap <C-space> <esc> 
 " vnoremap <C-space> <esc> 
@@ -167,7 +178,7 @@ noremap! <c-l> <esc>
 " seems not to work in macvim. oh well.
 " or for fzf (work on this)
 cnoremap <c-l> <c-c>
-" cnoremap <c-space> <esc>
+" cnoremap <C-Space> <esc>
 " convenient save
 nnoremap <leader>w :w!<cr>
 " semicolon and color are hard to insert with remaps
@@ -195,4 +206,7 @@ command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
 " shell command to new tab
 " function! s:ExecuteInShellOtherWindow(command)
-"    let command = 
+"    let command =
+"
+"    make leader key leadier
+let g:fml_all_sources=1
