@@ -210,3 +210,5 @@ command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 "
 "    make leader key leadier
 let g:fml_all_sources=1
+
+set cursorline
