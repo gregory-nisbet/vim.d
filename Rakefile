@@ -1,6 +1,16 @@
 require 'fileutils'
 require 'pathname'
 
+#TODO
+#youcompleteme and supertab BOTH want control of the tab
+#key
+#I kind or sort of like them both, so I'll need to configure my way
+#around this.
+#the rakefile should be capable of managing configuration stuff like activating
+#and decativating modules and updating modules
+#for updating modules we probably need to move the modules to a YAML or JSON file
+#outside of this one.
+
 $vim_modules = []
 def new_module(url, name, hash_prefix)
     $vim_modules.push([url, name, hash_prefix])
@@ -104,6 +114,13 @@ new_module(
     "96f0d94196c4cf0697938465bee2b3a30310b7b3"
 )
 
+# typescript
+new_module(
+    "https://github.com/leafgarland/typescript-vim",
+    "typescript",
+    "a9c533386776d831f8098e66f2d0b43dfd42b06b"
+)
+
 task :vim_dir do
     Dir.chdir ENV["HOME"] do
         %w[.vim .vim/autoload .vim/bundle].each { |item|
@@ -139,7 +156,7 @@ def git_grab(url, name, hash_prefix)
 end
 
 task :modules => [:vim_dir] do
-    $bundle_path = ENV["HOME"] + "/.vim/bundle"
+    $bundle_path = Pathname.new(ENV["HOME"]).join(".vim", "bundle")
 
     $vim_modules.each { |item|
         git_grab(*item)
