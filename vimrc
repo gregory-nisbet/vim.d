@@ -209,6 +209,10 @@ command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 "    let command =
 "
 "    make leader key leadier
-let g:fml_all_sources=1
+" let g:fml_all_sources=1
 
 set cursorline
+
+" recommendation to make c-u and c-w undoable in insert mode
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
