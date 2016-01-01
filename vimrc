@@ -113,10 +113,17 @@ set number
 set nofoldenable
 " elflord is an excellent default color scheme
 colorscheme elflord
+
 "interim colorstepper keys
-nmap <F6> <Plug>ColorstepPrev
-nmap <F7> <Plug>ColorstepNext
-nmap <S-F7> <Plug>ColorstepReload
+nnoremap <F6> <Plug>ColorstepPrev
+nnoremap <F7> <Plug>ColorstepNext
+nnoremap <S-F7> <Plug>ColorstepReload
+" include colorstepping in insert mode as well
+inoremap <F6> <Plug>ColorstepPrev
+inoremap <F7> <Plug>ColorstepNext
+inoremap <S-F7> <Plug>ColorstepReload
+
+
 " in order to keep cool stuff like the column number blue, you gotta
 " define an exit hook for vim-colorstepper (which I patched)
 function! g:StepColorExitHook()
@@ -125,6 +132,8 @@ function! g:StepColorExitHook()
         " line number column is dark blue with white text.
         highlight LineNr ctermbg=darkblue ctermfg=white
 endfunction
+
+
 " define a way of modifying the colorscheme so as to apply the 
 " blue column
 function! g:ColumnBlue()
@@ -133,6 +142,8 @@ function! g:ColumnBlue()
         " line number column is dark blue with white text.
         highlight LineNr ctermbg=darkblue ctermfg=white
 endfunction
+
+
 " actually enable the cool color scheme by default
 call g:StepColorExitHook()
 " keymaps
@@ -163,8 +174,11 @@ noremap <leader>s :Shell<space>
 noremap <silent> <leader><cr> :noh<cr><esc>
 
 " remapping space is convenient and ^space doesn't work at all.
-" noremap <space> /
-" noremap <C-Space> ?
+" so my terminal sends ^@ which is nul apparently?
+noremap <space> /
+" note this is intended to be C-Space
+" for various terminal reasons, C-2 and C-@ map to the same thing.
+noremap <NUL> ?
 noremap gc /
 noremap gv ? 
 " noremap <C-space> <esc>
