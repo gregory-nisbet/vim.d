@@ -112,16 +112,23 @@ set number
 " code folding sux
 set nofoldenable
 " elflord is an excellent default color scheme
-colorscheme elflord
+" that is a lie actually.
+" in tmux, for whatever reason elflord does
+" not have visible visual blocks at least in the 
+" default xfce terminal or whatever I'm using right now
+colorscheme koehler 
 
+
+"for whatever reason noremap does not seem to work very well
+"here
 "interim colorstepper keys
-nnoremap <F6> <Plug>ColorstepPrev
-nnoremap <F7> <Plug>ColorstepNext
-nnoremap <S-F7> <Plug>ColorstepReload
+nmap <F6> <Plug>ColorstepPrev
+nmap <F7> <Plug>ColorstepNext
+nmap <S-F7> <Plug>ColorstepReload
 " include colorstepping in insert mode as well
-inoremap <F6> <Plug>ColorstepPrev
-inoremap <F7> <Plug>ColorstepNext
-inoremap <S-F7> <Plug>ColorstepReload
+imap <F6> <Plug>ColorstepPrev
+imap <F7> <Plug>ColorstepNext
+imap <S-F7> <Plug>ColorstepReload
 
 
 " in order to keep cool stuff like the column number blue, you gotta
@@ -230,3 +237,6 @@ set cursorline
 " recommendation to make c-u and c-w undoable in insert mode
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
+
+" disable visual bell in gvim as well
+au GuiEnter * set visualbell t_vb=
