@@ -85,6 +85,10 @@ set tabstop=4
 set smarttab
 set expandtab
 set shiftwidth=4
+
+" show last command
+set showcmd
+
 " recommendation for python et al
 filetype plugin indent on
 " nerdtree show hidden files
@@ -237,6 +241,10 @@ set cursorline
 " recommendation to make c-u and c-w undoable in insert mode
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
+
+"set the grep program
+set grepprg=ag\ --vimgrep
+set grepformat=%f:%l:%c:%m
 
 " disable visual bell in gvim as well
 au GuiEnter * set visualbell t_vb=
