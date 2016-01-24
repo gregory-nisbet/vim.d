@@ -199,6 +199,11 @@ noremap! <c-l> <esc>
 " seems not to work in macvim. oh well.
 " or for fzf (work on this)
 cnoremap <c-l> <c-c>
+
+" ctrl-c now does escape.
+noremap <c-c> <esc>
+noremap! <c-c> <esc>
+
 " cnoremap <C-Space> <esc>
 " convenient save
 nnoremap <leader>w :w!<cr>
