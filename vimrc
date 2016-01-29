@@ -253,3 +253,6 @@ set grepformat=%f:%l:%c:%m
 
 " disable visual bell in gvim as well
 au GuiEnter * set visualbell t_vb=
+
+" stronger cipher
+set cm=blowfish2
