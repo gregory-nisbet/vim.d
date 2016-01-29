@@ -130,9 +130,11 @@ nmap <F6> <Plug>ColorstepPrev
 nmap <F7> <Plug>ColorstepNext
 nmap <S-F7> <Plug>ColorstepReload
 " include colorstepping in insert mode as well
-imap <F6> <Plug>ColorstepPrev
-imap <F7> <Plug>ColorstepNext
-imap <S-F7> <Plug>ColorstepReload
+" needs an <c-o> to do the thing and then drop back into
+" insert mode
+imap <F6> <c-o><Plug>ColorstepPrev
+imap <F7> <c-o><Plug>ColorstepNext
+imap <S-F7> <c-o><Plug>ColorstepReload
 
 
 " in order to keep cool stuff like the column number blue, you gotta
