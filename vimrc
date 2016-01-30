@@ -140,20 +140,20 @@ imap <S-F7> <c-o><Plug>ColorstepReload
 " in order to keep cool stuff like the column number blue, you gotta
 " define an exit hook for vim-colorstepper (which I patched)
 function! g:StepColorExitHook()
-        " white text on a black background
-        " highlight Normal ctermbg=black ctermfg=white
-        " line number column is dark blue with white text.
-        highlight LineNr ctermbg=darkblue ctermfg=white
+    " white text on a black background
+    " highlight Normal ctermbg=black ctermfg=white
+    " line number column is dark blue with white text.
+    highlight LineNr ctermbg=darkblue ctermfg=white
 endfunction
 
 
 " define a way of modifying the colorscheme so as to apply the 
 " blue column
 function! g:ColumnBlue()
-        " white text on a black background
-        highlight Normal ctermbg=black ctermfg=white
-        " line number column is dark blue with white text.
-        highlight LineNr ctermbg=darkblue ctermfg=white
+    " white text on a black background
+    highlight Normal ctermbg=black ctermfg=white
+    " line number column is dark blue with white text.
+    highlight LineNr ctermbg=darkblue ctermfg=white
 endfunction
 
 
@@ -173,6 +173,10 @@ noremap <leader>o :BufExplorer<cr>
 noremap <leader>qa :qa!<cr>
 noremap <leader>wq :wq<cr>
 noremap <leader>n :NERDTree<cr>
+
+noremap <leader>s :split<cr>
+noremap <leader>v :vsplit<cr>
+
 " collapse vertically split window
 " todo uncollapse
 noremap <leader>d :resize 0<cr>
@@ -181,7 +185,7 @@ noremap <leader>d :resize 0<cr>
 noremap <leader>D <c-w>_<cr>
 " Shell command to scratch buffer
 " note this line intentionally ends in a space
-noremap <leader>s :Shell<space>
+noremap <leader>S :Shell<space>
 "fzf opens with no files for some reason
 "map <leader>f :FZF<cr>
 noremap <silent> <leader><cr> :noh<cr><esc>
@@ -210,6 +214,9 @@ cnoremap <c-l> <c-c>
 noremap <c-c> <esc>
 noremap! <c-c> <esc>
 
+noremap <silent> <c-c><c-c> <esc>:nohl<cr><esc>
+noremap! <silent> <c-c><c-c> <esc>:nohl<cr><esc>
+
 " cnoremap <C-Space> <esc>
 " convenient save
 nnoremap <leader>w :w!<cr>
@@ -222,17 +229,17 @@ ca shell Shell
 " stolen from http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
 " uses the command alias Shell and modifies it for some reason.
 function! s:ExecuteInShell(command)
-  let command = join(map(split(a:command), 'expand(v:val)'))
-  let winnr = bufwinnr('^' . command . '$')
-  silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-  setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-  echo 'Execute ' . command . '...'
-  silent! execute 'silent %!'. command
-  silent! execute 'resize ' . line('$')
-  silent! redraw
-  silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-  silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
-  echo 'Shell command ' . command . ' executed.'
+    let command = join(map(split(a:command), 'expand(v:val)'))
+    let winnr = bufwinnr('^' . command . '$')
+    silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+    echo 'Execute ' . command . '...'
+    silent! execute 'silent %!'. command
+    silent! execute 'resize ' . line('$')
+    silent! redraw
+    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+    echo 'Shell command ' . command . ' executed.'
 endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
