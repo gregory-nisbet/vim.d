@@ -224,6 +224,12 @@ nnoremap <leader>w :w!<cr>
 " inoremap <M-j> ;
 " inoremap <M-k> :
 
+" save even when you don't have permission to
+nnoremap <leader>ww :w !sudo tee %<cr>
+
+" colon is harder to type than leader c
+nnoremap <leader>f :
+
 " function shell command to new buffer
 ca shell Shell
 " stolen from http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
