@@ -140,20 +140,20 @@ imap <S-F7> <c-o><Plug>ColorstepReload
 " in order to keep cool stuff like the column number blue, you gotta
 " define an exit hook for vim-colorstepper (which I patched)
 function! g:StepColorExitHook()
-        " white text on a black background
-        " highlight Normal ctermbg=black ctermfg=white
-        " line number column is dark blue with white text.
-        highlight LineNr ctermbg=darkblue ctermfg=white
+    " white text on a black background
+    " highlight Normal ctermbg=black ctermfg=white
+    " line number column is dark blue with white text.
+    highlight LineNr ctermbg=darkblue ctermfg=white
 endfunction
 
 
 " define a way of modifying the colorscheme so as to apply the 
 " blue column
 function! g:ColumnBlue()
-        " white text on a black background
-        highlight Normal ctermbg=black ctermfg=white
-        " line number column is dark blue with white text.
-        highlight LineNr ctermbg=darkblue ctermfg=white
+    " white text on a black background
+    highlight Normal ctermbg=black ctermfg=white
+    " line number column is dark blue with white text.
+    highlight LineNr ctermbg=darkblue ctermfg=white
 endfunction
 
 
@@ -228,17 +228,17 @@ ca shell Shell
 " stolen from http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
 " uses the command alias Shell and modifies it for some reason.
 function! s:ExecuteInShell(command)
-  let command = join(map(split(a:command), 'expand(v:val)'))
-  let winnr = bufwinnr('^' . command . '$')
-  silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-  setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-  echo 'Execute ' . command . '...'
-  silent! execute 'silent %!'. command
-  silent! execute 'resize ' . line('$')
-  silent! redraw
-  silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-  silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
-  echo 'Shell command ' . command . ' executed.'
+    let command = join(map(split(a:command), 'expand(v:val)'))
+    let winnr = bufwinnr('^' . command . '$')
+    silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+    echo 'Execute ' . command . '...'
+    silent! execute 'silent %!'. command
+    silent! execute 'resize ' . line('$')
+    silent! redraw
+    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+    echo 'Shell command ' . command . ' executed.'
 endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
@@ -263,4 +263,10 @@ set grepformat=%f:%l:%c:%m
 au GuiEnter * set visualbell t_vb=
 
 " stronger cipher
-set cm=blowfish2
+" http://stackoverflow.com/questions/11035933/ignore-unknown-option-errors-in-vimrc
+" vimscript exception handling
+" http://stackoverflow.com/questions/5850103/try-catch-in-vimscript
+try
+    set cryptmethod=blowfish2
+catch
+endtry
