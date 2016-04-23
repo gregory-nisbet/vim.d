@@ -1,4 +1,5 @@
 #!/bin/sh
+set -euf
 mkdir -p "$HOME"/.vim
 
 # get pathogen and set up files
