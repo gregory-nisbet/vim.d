@@ -28,6 +28,14 @@
 "
 " also I need to add an org-modey thing to this vim config to improve it
 
+
+" yeah this can go right here
+" originally this was at the end of my config file but
+" that didn't really work
+" make the background dark for OS X builtin terminal
+set background=dark
+
+
 " pathogen runtime manager
 execute pathogen#infect()
 " run sensible stuff first
@@ -115,12 +123,16 @@ set wildmenu
 set number
 " code folding sux
 set nofoldenable
+
+
 " elflord is an excellent default color scheme
 " that is a lie actually.
 " in tmux, for whatever reason elflord does
 " not have visible visual blocks at least in the 
 " default xfce terminal or whatever I'm using right now
-colorscheme koehler 
+" murphy seems to work well on the default terminal in OS X
+" and iterm2, so it statys for now
+colorscheme murphy
 
 
 "for whatever reason noremap does not seem to work very well
@@ -252,9 +264,15 @@ command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 set cursorline
 
 " recommendation to make c-u and c-w undoable in insert mode
-inoremap <c-u> <c-g>u<c-u>
+" inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
-
+" C-u and C-d are really annoying in insert mode
+" I keep deleting stuff by mistake
+" instead of scrolling
+" so I'm disabling this
+" feature
+inoremap <c-u> <Nop>
+inoremap <c-d> <Nop>
 "set the grep program
 set grepprg=ag\ --vimgrep
 set grepformat=%f:%l:%c:%m
@@ -270,3 +288,4 @@ try
     set cryptmethod=blowfish2
 catch
 endtry
+

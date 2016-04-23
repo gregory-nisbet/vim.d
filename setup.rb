@@ -120,9 +120,10 @@ git_grab(
   "87d0d3e3b6e0f49f2467472a0a0ecd547e187358"
 )
 
+# I don't actually use this thing ever
 # you complete me
-git_grab(
-    "https://github.com/Valloric/YouCompleteMe",
-    "youcompleteme",
-    "96f0d94196c4cf0697938465bee2b3a30310b7b3"
-)
+#git_grab(
+#    "https://github.com/Valloric/YouCompleteMe",
+#    "youcompleteme",
+#    "96f0d94196c4cf0697938465bee2b3a30310b7b3"
+#)
