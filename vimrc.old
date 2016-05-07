@@ -216,18 +216,16 @@ noremap gv ?
 " vnoremap <C-space> <esc> 
 " nnoremap <C-space> <esc>
 " doesn't work in / searches whatever.
-noremap <c-k> <esc>
-cnoremap <c-k> <c-c>
 noremap <c-l> <esc>
-" noremap! <c-l> <esc>
+noremap! <c-l> <esc>
 " escape from command-line like things
 " seems not to work in macvim. oh well.
 " or for fzf (work on this)
 cnoremap <c-l> <c-c>
 
 " ctrl-c now does escape.
-" noremap <c-c> <esc>
-" noremap! <c-c> <esc>
+noremap <c-c> <esc>
+noremap! <c-c> <esc>
 
 " cnoremap <C-Space> <esc>
 " convenient save
@@ -247,20 +245,20 @@ nnoremap <leader>f :
 " ca shell Shell
 " stolen from http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
 " uses the command alias Shell and modifies it for some reason.
-function! s:ExecuteInShell(command)
-    let command = join(map(split(a:command), 'expand(v:val)'))
-    let winnr = bufwinnr('^' . command . '$')
-    silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-    echo 'Execute ' . command . '...'
-    silent! execute 'silent %!'. command
-    silent! execute 'resize ' . line('$')
-    silent! redraw
-    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
-    echo 'Shell command ' . command . ' executed.'
-endfunction
-command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+"function! s:ExecuteInShell(command)
+    "let command = join(map(split(a:command), 'expand(v:val)'))
+    "let winnr = bufwinnr('^' . command . '$')
+    "silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+    "setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+    "echo 'Execute ' . command . '...'
+    "silent! execute 'silent %!'. command
+    "silent! execute 'resize ' . line('$')
+    "silent! redraw
+    "silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+    "silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+    "echo 'Shell command ' . command . ' executed.'
+"endfunction
+" command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
 " shell command to new tab
 " function! s:ExecuteInShellOtherWindow(command)

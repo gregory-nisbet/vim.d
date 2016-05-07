@@ -17,7 +17,7 @@ bundle_path="$HOME"/.vim/bundle
 # git_grab expects url name and hash_prefix to be set
 # prior to invocation
 git_grab() {
-    if [ -f "$bundle_path"/"$name" ]; then
+    if [ -e "$bundle_path"/"$name" ]; then
         :
     else
         (cd "$bundle_path" && git clone "$url" "$name")
@@ -110,3 +110,9 @@ git_grab
 #    "youcompleteme",
 #    "96f0d94196c4cf0697938465bee2b3a30310b7b3"
 #)
+
+# vim sleuth, heuristic auto-indent
+url="https://github.com/tpope/vim-sleuth"
+name="vim-sleuth"
+hash_prefix="a17462708aa40a7fc0afd4effa559087d8a2c908"
+git_grab
