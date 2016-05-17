@@ -97,6 +97,10 @@ set shiftwidth=4
 " show last command
 set showcmd
 
+" /bin/sh is posix. (Does this solve the $( ... ) issue?)
+" yes it does, but it might have [[ ]] as well
+let g:is_posix = 1
+
 " recommendation for python et al
 filetype plugin indent on
 " nerdtree show hidden files
@@ -191,6 +195,9 @@ noremap <leader>d :resize 0<cr>
 " close enough to uncollapse right?
 " also C-w _ uncollapses 
 noremap <leader>D <c-w>_<cr>
+" b buffer list
+noremap <leader>b :buffers<cr>:buffer<space>
+
 " Shell command to scratch buffer
 " note this line intentionally ends in a space
 "
@@ -218,6 +225,9 @@ noremap gv ?
 " doesn't work in / searches whatever.
 noremap <c-k> <esc>
 cnoremap <c-k> <c-c>
+inoremap <c-k> <esc>
+
+inoremap <c-k> <esc>
 noremap <c-l> <esc>
 " noremap! <c-l> <esc>
 " escape from command-line like things
@@ -247,20 +257,20 @@ nnoremap <leader>f :
 " ca shell Shell
 " stolen from http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
 " uses the command alias Shell and modifies it for some reason.
-function! s:ExecuteInShell(command)
-    let command = join(map(split(a:command), 'expand(v:val)'))
-    let winnr = bufwinnr('^' . command . '$')
-    silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-    echo 'Execute ' . command . '...'
-    silent! execute 'silent %!'. command
-    silent! execute 'resize ' . line('$')
-    silent! redraw
-    silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
-    echo 'Shell command ' . command . ' executed.'
-endfunction
-command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+"function! s:ExecuteInShell(command)
+    "let command = join(map(split(a:command), 'expand(v:val)'))
+    "let winnr = bufwinnr('^' . command . '$')
+    "silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+    "setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+    "echo 'Execute ' . command . '...'
+    "silent! execute 'silent %!'. command
+    "silent! execute 'resize ' . line('$')
+    "silent! redraw
+    "silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+    "silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+    "echo 'Shell command ' . command . ' executed.'
+"endfunction
+"command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 
 " shell command to new tab
 " function! s:ExecuteInShellOtherWindow(command)
