@@ -210,6 +210,9 @@ noremap <leader>b :buffers<cr>:buffer<space>
 "map <leader>f :FZF<cr>
 noremap <silent> <leader><cr> :noh<cr><esc>
 
+noremap j gj
+noremap k gk
+
 " remapping space is convenient and ^space doesn't work at all.
 " so my terminal sends ^@ which is nul apparently?
 noremap <space> /
