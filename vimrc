@@ -210,6 +210,13 @@ noremap <leader>b :buffers<cr>:buffer<space>
 "map <leader>f :FZF<cr>
 noremap <silent> <leader><cr> :noh<cr><esc>
 
+" http://stackoverflow.com/questions/27500514/vim-move-copy-line-to-end-of-file-without-moving-cursor
+" move current line to end of the buffer without moving cursor
+nnoremap <leader>mv ddGp``
+" copy the current lin eto the end of the buffer wihtout moving cusror
+nnoremap <leader>cp dd YGp``
+
+
 noremap j gj
 noremap k gk
 
