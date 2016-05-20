@@ -152,7 +152,6 @@ imap <F6> <c-o><Plug>ColorstepPrev
 imap <F7> <c-o><Plug>ColorstepNext
 imap <S-F7> <c-o><Plug>ColorstepReload
 
-
 " in order to keep cool stuff like the column number blue, you gotta
 " define an exit hook for vim-colorstepper (which I patched)
 function! g:StepColorExitHook()
@@ -160,6 +159,9 @@ function! g:StepColorExitHook()
     " highlight Normal ctermbg=black ctermfg=white
     " line number column is dark blue with white text.
     highlight LineNr ctermbg=darkblue ctermfg=white
+    " need to add this so that the cursorline is
+    " darkgrey is the best color so far but not all that readable.
+    " hi CursorLine term=underline cterm=NONE gui=NONE ctermbg=darkgrey
 endfunction
 
 
@@ -189,6 +191,13 @@ noremap <leader>o :BufExplorer<cr>
 noremap <leader>qa :qa!<cr>
 noremap <leader>wq :wq<cr>
 noremap <leader>n :NERDTree<cr>
+
+noremap <leader>s :split<cr>
+noremap <leader>v :vsplt<cr>
+" yank entire buffer to system clipboard
+" somewhat annoyingly alters your location in the buffer
+noremap <leader>a :%"+Y<cr>
+
 " collapse vertically split window
 " todo uncollapse
 noremap <leader>d :resize 0<cr>
@@ -200,12 +209,14 @@ noremap <leader>b :buffers<cr>:buffer<space>
 
 " Shell command to scratch buffer
 " note this line intentionally ends in a space
+" noremap <leader>S :Shell<space>
 "
 " there's a strange bug where ':e shell' -> ':e Shell'
 "
 " shell function
 " noremap <leader>s :Shell<space>
 "
+
 "fzf opens with no files for some reason
 "map <leader>f :FZF<cr>
 noremap <silent> <leader><cr> :noh<cr><esc>
@@ -216,9 +227,6 @@ nnoremap <leader>mv ddGp``
 " copy the current lin eto the end of the buffer wihtout moving cusror
 nnoremap <leader>cp dd YGp``
 
-
-noremap j gj
-noremap k gk
 
 " remapping space is convenient and ^space doesn't work at all.
 " so my terminal sends ^@ which is nul apparently?
@@ -249,6 +257,9 @@ cnoremap <c-l> <c-c>
 " noremap <c-c> <esc>
 " noremap! <c-c> <esc>
 
+noremap <silent> <c-c><c-c> <esc>:nohl<cr><esc>
+noremap! <silent> <c-c><c-c> <esc>:nohl<cr><esc>
+
 " cnoremap <C-Space> <esc>
 " convenient save
 nnoremap <leader>w :w!<cr>
@@ -261,6 +272,10 @@ nnoremap <leader>ww :w !sudo tee %<cr>
 
 " colon is harder to type than leader c
 nnoremap <leader>f :
+
+" make j and k go up and down one visual line
+nnoremap j gj
+nnoremap k gk
 
 " function shell command to new buffer
 " there's a strange bug where ':e shell' -> ':e Shell'
@@ -290,6 +305,8 @@ nnoremap <leader>f :
 " let g:fml_all_sources=1
 
 set cursorline
+"hopefully make cursorline easier to read
+call g:StepColorExitHook()
 
 " recommendation to make c-u and c-w undoable in insert mode
 " inoremap <c-u> <c-g>u<c-u>
@@ -307,6 +324,12 @@ set grepformat=%f:%l:%c:%m
 
 " disable visual bell in gvim as well
 au GuiEnter * set visualbell t_vb=
+
+" use gofmt for go files
+" go fmt does not print the original on error
+" so here is what we are going to do.
+" first write it to a file
+" au FileType go set equalprg=gofmt-safe.pl
 
 " stronger cipher
 " http://stackoverflow.com/questions/11035933/ignore-unknown-option-errors-in-vimrc
